@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../css/loaded.css">
+    <link rel="icon" href="../logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загруженное изображение</title>
+  </head>
+<body>
+    <div class="container">
+        <h1>Загруженное изображение</h1>
+
+        <!-- Превью загруженного изображения -->
+        <img id="imagePreview" alt="Загруженное изображение" src="../images/null">
+
+        <!-- Кнопка для скачивания изображения -->
+        <button onclick="downloadImage()">Скачать изображение</button>
+
+        <!-- Кнопка для копирования ссылки на изображение -->
+        <button id="copyLinkBtn" onclick="copyLink()">Скопировать ссылку</button>
+
+        <!-- Скрипт для обработки кнопок -->
+        <script src="{% static 'js/loaded.js'%} "></script>
+    </div>
+</body></html>

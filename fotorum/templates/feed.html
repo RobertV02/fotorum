@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://storage.yandexcloud.net/fotorum.ru/feed.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   {% load static %}
+  <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+  <link rel="icon" href="https://storage.yandexcloud.net/fotorum.ru/svg/logo.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лента</title>
+</head>
+
+<body>
+  <!-- Поисковая строка-->
+  <div class="search-box">
+    <input type="text" class="search-txt" placeholder="Поиск">
+    <a href="https://storage.yandexcloud.net/fotorum.ru/feed.html#" class="search-btn"><img src="{% static 'svg/magnifying-glass-solid.svg' %}" class="image"></a>
+  </div>
+
+
+
+{% if user.is_authenticated %}
+  <!-- Кнопка выхода -->
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn">Выход</button>
+  </form>
+{% else %}
+  <!-- Кнопка входа -->
+  <!-- Кнопка открытия модального окна -->
+  <button id="sign-in" class="btn" onclick="openModal()">
+    <img src="{% static 'svg/right-to-bracket-solid.svg' %}" class="sign-in-img" value="Вход">Вход
+  </button>
+{% endif %}
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal()">×</button>
+        <div class="login-wrap" style="text-align: center;">
+            <div class="login-html space">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked="">
+                <label for="tab-1" class="tab">Вход</label>
+                <input id="tab-2" type="radio" name="tab" class="sign-up">
+                <label for="tab-2" class="tab">Регистрация</label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="login-box">
+                                <div class="group user-box">
+                                    <input type="text" class="input" name="username" required="">
+                                    <label class="label">Логин:</label>
+                                </div>
+                                <div class="group user-box">
+                                    <input type="password" class="input" name="password" required="">
+                                    <label class="label">Пароль:</label>
+                                </div>
+                                <div class="group">
+                                    <button type="submit" class="btn-1">Войти</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="sign-up-htm">
+                        <form action="{% url 'register' %}" method="post">
+                            {% csrf_token %}
+                            <div class="login-box">
+                                <div class="group user-box">
+                                    <input type="text" class="input" name="username" required="">
+                                    <label class="label">Никнейм:</label>
+                                </div>
+                                <div class="group user-box">
+                                    <input type="password" class="input" name="password1" required="">
+                                    <label class="label">Пароль:</label>
+                                </div>
+                                <div class="group user-box">
+                                    <input type="password" class="input" name="password2" required="">
+                                    <label class="label">Повторите пароль:</label>
+                                </div>
+                                <div class="group">
+                                    <button type="submit" class="btn-1">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  {% if user.is_authenticated %}
+  <!-- Кнопка открытия второго модального окна -->
+  <button id="uploadbtn" class="btn" onclick="openSecondModal()">Загрузить</button>
+{% endif %}
+  <!-- Второе модальное окно -->
+<div id="secondModal" class="modal2">
+  <div class="modal-content2">
+    <button class="close" onclick="closeSecondModal()">×</button>
+
+    <!-- Форма для загрузки изображения -->
+    <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Текстовое поле для ввода 'key' -->
+      <input type="text" hidden="" id="key" name="key">
+      <input type="hidden" name="success_action_redirect" value="http://fotorum.ru/upload/loaded.html">
+
+      <!-- Скрытие области и показ превью -->
+      <div id="previewContainer" style="display: none;">
+        <img id="preview" class="img2" alt="Image Preview">
+      </div>
+
+      <!-- Область загрузки -->
+      <div id="dropArea" placeholder="Перетащите изображение в данное окно">
+        <p>Перетащите изображение в данное окно</p>
+      </div>
+
+      <!-- Кнопка выбора изображения -->
+      <label for="files" class="btn2" id="chooseImageButton">Выберите изображение</label>
+      <input type="file" name="image" id="fileInput" accept="image/*" class="customfile" hidden="">
+
+      <input type="submit" class="btn2" id="submitForm" value="Загрузить" />
+    </form>
+  </div>
+</div>
+
+
+<!-- Сюда добавляются карточки изображений -->
+<h1>Последние загруженные фотографии</h1>
+<div class="cards clearfix">
+  {% for photo in photos %}
+    <div class="card">
+      <img src="{{ photo.image.url }}" alt="Image" style="max-width: 267px; max-height: 200px;">
+      <!-- Добавьте здесь другие детали изображения, если необходимо -->
+    </div>
+  {% endfor %}
+</div>
+
+
+  <script src="{% static 'js/feed.js' %}"></script>
+  <script defer="" src="{% static 'js/upload.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropArea = document.getElementById('dropArea');
+
+        // Предотвращаем стандартное поведение браузера для событий dragover и drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Связываем перетаскиваемые файлы с элементом input[type=file]
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            var dt = e.dataTransfer;
+            var files = dt.files;
+
+            // Связываем первый файл из списка с элементом input[type=file]
+            document.getElementById('fileInput').files = files;
+        }
+    });
+</script>
+</body></html>

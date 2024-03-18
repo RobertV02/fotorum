@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'css/upload.css'%}">
+    <link rel="icon" href="{% static 'svg/logo.png'%}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка изображения</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Форма для загрузки изображения в бакет 'javascript' -->
+      <form id="uploadForm" onsubmit="return submitForm()" action="https://storage.yandexcloud.net/fotorum-images" method="post" enctype="multipart/form-data">
+        <!-- Текстовое поле для ввода 'key' пользователем -->
+        <input type="text"  id="key" hidden name="key">
+        <input type="text" id="fileName" hidden placeholder="Введите название" class="fileName">
+        <input type="hidden" name="success_action_redirect" value="http://fotorum.ru/upload/loaded.html">
+
+        <!-- Область загрузки -->
+        <div for="files" id="dropArea" type="file" accept=" image/*">
+          <p>Перетащите изображение в данное окно</p>
+        </div>
+
+        <!-- Скрытие области и показ превью -->
+        <div id="previewContainer" hidden><img id="preview" alt="Image Preview"></div>
+
+        <!-- Кнопка выбора изображения -->
+        <label for="files" class="btn">Выберите изображение</label>
+        <input type="file" name="file" id="fileInput" accept=" image/*" hidden>
+        
+        <button type="submit" id="submit" class="btn" hidden>Загрузить</button>
+        
+        <script src="{% static 'js/upload.js'%}"></script>
+      </form>
+    </div>
+  </body> 
+</html>
