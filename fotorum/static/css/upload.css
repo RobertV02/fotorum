@@ -1,105 +1,108 @@
-body {
-  margin: 0;
-  padding: 0;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: linear-gradient(45deg, #000000, #0c225f);
+.Navbar
+{
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #1F1F1F;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25)
 }
 
-.container {
-  background-color: rgba(119, 119, 119, 0.25);
-  padding: 20px;
-  border-radius: 25px;
-  border: 2px solid #72a8ff;
-  box-shadow: 0 0 30px #5075b1;
+.Logo
+{
+  width: 68.30px;
+  height: 60px;
+  left: 20px;
+  top: 10px;
+  position: relative;
 }
 
-h1 {
-  font-family: sans-serif;
-  color: #ffffff;
-  font-weight: lighter;
-  text-align: center;
-  padding-bottom: 20px;
-  text-shadow: 1px 1px 10px #00000088;
-  cursor: default;
+.Vector
+{
+  top: 19px;
+  width: 30px;
+  height: 30px;
+  right: 30px;
+  position: absolute;
+  fill: #D9D9D9;
+  stroke-width: 6px;
+  stroke: #333333;
+  filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.fileName {
-  outline: none;
-  margin-bottom: 20px;
-  padding: 6px;
-  border: 2px solid #72a8ff;
-  border-radius: 10px;
-  font-size: 16px;
-  background-color: #282d40;
-  color: #ffffff;
-  transition: all 0.25s ease-in-out;
-  text-shadow: 1px 1px 10px #00000088;
-}
-
-.fileName:hover {
-  box-shadow: 0 0 20px #5075b1;
-  outline: #b67600;
-  border-color: #b67600;
-}
-
-img {
-  max-width: 100%;
-  max-height: 400px;
-  margin-top: 20px;
+.Modal
+{
+  top: 340px;
+  width: 500px;
+  height: 400px;
+  position: relative;
+  background: #4a4a4a;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 0 0 20px #5075b1;
+  overflow: hidden;
+  border: 1px rgba(0, 0, 0, 0) solid;
+  flex-direction: column;
+  justify-content: flex;
+  align-items: center;
+  display: flex;
+}
+
+.Menu
+{
+  top: 80px;
+  right: 0px;
+  position: absolute;
+  width: 240px;
+  min-height: auto;
+  flex-shrink: 0;
+  background: #1F1F1F;
   display: none;
-  cursor: pointer;
 }
 
-.btn {
-  padding: 8px;
-  font-family: sans-serif;
-  color: #ffffff;
-  background-color: #282d40;
-  border: 2px solid #72a8ff;
-  border-radius: 10px;
-  margin-top: 20px;
-  transition: all 0.25s ease-in-out;
-  cursor: pointer;
-  text-shadow: 1px 1px 5px #00000088;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 0px 15px #5075b1;
-}
-
-#dropArea {
-  color: #ffffff88;
-  font-family: sans-serif;
-  border: 2px dashed #ffffff88;
-  padding: 40px;
-  border-radius: 40px;
-  text-align: center;
-  cursor: help;
-  text-shadow: 1px 1px 5px #00000088;
-  transition: all 0.25s ease-in-out;
-}
-
-#dropArea:hover {
-  box-shadow: 0px 0px 20px #5075b1;
-}
-
-#preview {
-  max-width: 100%;
-  max-height: 400px;
-  margin-bottom: 20px;
-  border: 2px dashed #ffffff88;
+.Menu.open
+{
   display: block;
+}
+
+.MenuBtn
+{
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  width: 100%; 
+  height: 80px;
+  height: 104px;
+  color: white;
+  font-family: "Zen Maru Gothic";
+  font-size: 24px;
+  font-style: normal;
+  line-height: 36px;
+  min-height: 36px;
+  letter-spacing: 1px;
+  background: #1f1f1f;
+  border: none; 
+  transition: all 0.6s ease-out;
+}
+
+.MenuBtn:hover
+{
+  background: #333333;
+  cursor: pointer;
+}
+
+h1
+{
+  top: 0px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  width: 30%;
+  padding-left: 35%;
+  position: absolute;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 26px;
+  font-family: "Zen Maru Gothic";
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: default;
+  white-space: nowrap;
 }

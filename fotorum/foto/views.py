@@ -7,14 +7,20 @@ from django.http import HttpResponseBadRequest
 from foto.models import *
 # Create your views here.
 def index(request):
-    # Получаем все объекты Photo из базы данных, отсортированные по времени создания
-    photos = Photo.objects.all().order_by('-created_at')
-    return render(request, 'feed.html', {'photos': photos})
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '')
+        photos = Photo.objects.filter(description__icontains=search_query)
+    else:
+        photos = Photo.objects.all().order_by('-created_at')
+    return render(request, 'main.html', {'photos': photos})
+def upload(request):
+    return render(request, 'upload.html', )
+
 
 def search(request):
     query = request.GET.get('query')
     # Добавьте вашу логику поиска
-    return render(request, 'feed.html')
+    return render(request, 'main.html')
 
 
 
@@ -26,7 +32,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect('index')  # Перенаправляем на главную страницу после успешного входа
-    return render(request, 'feed.html')
+    return render(request, 'main.html')
 
 def register_view(request):
     if request.method == 'POST':
@@ -36,7 +42,7 @@ def register_view(request):
             return redirect('index')  # Перенаправляем на страницу входа после успешной регистрации
     else:
         form = UserCreationForm()
-    return render(request, 'feed.html', {'form': form})
+    return render(request, 'main.html', {'form': form})
 
 def logout_view(request):
     logout(request)

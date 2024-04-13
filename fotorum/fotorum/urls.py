@@ -6,6 +6,8 @@ from foto.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('upload/', upload, name='upload'),
+    path('search/', index, name='search_photos'),
     path('search/', search, name='search'),
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
