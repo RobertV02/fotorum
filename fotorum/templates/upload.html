@@ -11,23 +11,34 @@
 </head>
 <body>
 <div class="Navbar">
-  <img class="Logo" src="{% static 'svg/logo.png' %}" />
+  <a href="{% url 'index' %}">
+    <img class="Logo" src="{% static 'svg/logo.png' %}" />
+</a>
   <h1>Загрузка фотографии</h1>
   <div class="Vector" id="menuButton">
     <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
 </div>
-<div class="Modal">
-  <div class="DropArea"></div>
-    <div class="DropText">Перетащите изображение в данное окно</div>
-  <div class="Or">или</div>
-  <div class="Line1"></div>
-  <div class="Line2"></div>
-  <div class="ChooseImg">Выберите изображение</div>
-  <div class="Submit">Загрузить</div>
-  <input class="NameBox" placeholder="Введите название" onfocus="removePlaceholder(this)" onblur="restorePlaceholder(this)">
-  <div class="Formats">Какие форматы поддерживаются?</div>
-</div>
+<form method="post" enctype="multipart/form-data" action="{% url 'upload_photo' %}">
+  {% csrf_token %}
+  <div class="Modal">
+    <div class="DropArea" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+      <div class="DropText">Перетащите изображение в данное окно</div>
+    </div>
+    <div class="Or">или</div>
+    <div class="Line1"></div>
+    <div class="Line2"></div>
+    <input type="file" id="fileInput" class="HiddenInput" name="image" onchange="handleFileSelect(event)" style="">
+    <label for="fileInput" class="ChooseImg">Выберите изображение</label>
+    <div class="Submit" onclick="submitForm()">Загрузить</div>
+    <input class="NameBox" name="description" placeholder="Введите название" onfocus="removePlaceholder(this)" onblur="restorePlaceholder(this)">
+    <div class="Formats">Какие форматы поддерживаются?</div>
+  </div>
+</form>
+
+
+
+
 <div class="Menu">
   <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
   <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>
@@ -36,7 +47,12 @@
   <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
   <button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button>
 </div>
-<div class="Error"></div>
+<div class="Error">
+  {% if error_message %}
+    {{ error_message }}
+  {% endif %}
+</div>
+
 </body>
 <script src="{% static 'js/Upload.js' %}"></script>
 </html>

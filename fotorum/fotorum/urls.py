@@ -11,5 +11,5 @@ urlpatterns = [
     path('search/', index, name='search_photos'),
     path('search/', search, name='search'),
     path('register/', register, name='register'),
-
+    path('upload_photo/', upload_photo, name='upload_photo'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

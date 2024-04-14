@@ -11,7 +11,9 @@
 </head>
 <body> 
 <div class="Navbar">
+    <a href="{% url 'index' %}">
     <img class="Logo" src="{% static 'svg/logo.png' %}" />
+</a>
     <form method="post" action="{% url 'search_photos' %}" class="SearchForm">
     {% csrf_token %}
     <input class = "Search" name="search_query" placeholder="Поиск">
@@ -23,10 +25,11 @@
 <div class="Menu">
     <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
     <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>
-    <button name="Upload" class="MenuBtn" onclick="redirectToUpload()">Загрузить</button>
+
+    <a href="{% url 'upload' %}"><button name="Upload" class="MenuBtn">Загрузить</button></a>
     <button name="Support" class="MenuBtn" onclick="redirectToSupport()">Поддержка</button>
     <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
-    <button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button>
+    <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button></a>
 </div>
 <h1>Последние загруженные фотографии</h1>
 <div class="Grid">

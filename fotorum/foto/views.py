@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseBadRequest
 from foto.models import *
+from django.urls import reverse
+import re
+
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -15,14 +18,37 @@ def index(request):
     return render(request, 'main.html', {'photos': photos})
 def upload(request):
     return render(request, 'upload.html', )
-
+def auth(request):
+    return render(request, 'auth.html', )
 
 def search(request):
     query = request.GET.get('query')
     # Добавьте вашу логику поиска
-    return render(request, 'main.html')
+    redirect(reverse('index'))
 
 
+def upload_photo(request):
+    error_message = None  # Переменная для хранения текста ошибки
+    if request.method == 'POST':
+        image = request.FILES.get('image')
+        description = request.POST.get('description')
+        if not image:
+            error_message = 'Выберите изображение.'
+
+            return render(request, 'upload.html', {'error_message': error_message})
+
+        # Фильтр запрещенных символов
+        if re.match(r'^[\w\d\s-][^.]+$', description):
+            user = request.user
+            if image:
+                photo = Photo.objects.create(image=image, description=description, user=user)
+                return redirect(reverse('index'))
+        else:
+            # Обработка недопустимых символов
+            error_message = "Недопустимые символы в названии файла."
+
+    # Возвращаем рендеринг страницы с передачей текста ошибки
+    return render(request, 'upload.html', {'error_message': error_message})
 
 def login_view(request):
     if request.method == 'POST':

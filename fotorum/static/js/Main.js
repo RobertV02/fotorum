@@ -10,6 +10,9 @@ function redirectToAuth() { window.location.href = "https://fotorum.ru/"; }
 const menuButton = document.getElementById('menuButton');
 const menu = document.querySelector('.Menu');
 
+
+
+
 // Добавляем слушатель события на клик по иконке меню
 menuButton.addEventListener('click', function() {
     // Проверяем, открыто ли уже меню

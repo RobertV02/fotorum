@@ -271,3 +271,11 @@ h1
   letter-spacing: 1px;
   cursor: default;
 }
+
+.HiddenInput {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
