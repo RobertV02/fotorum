@@ -17,15 +17,20 @@
     <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
 </div>
-<div class="Modal">
-  <input class="Login" placeholder="Введите логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
-  <input class="Password" type="password" placeholder="Введите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword(this)">
+
+<form method="post" action="{% url 'login_view' %}" class="Modal">
+  {% csrf_token %}
+  <input class="Login" name="username" placeholder="Введите логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
+  <input class="Password" name="password" type="password" placeholder="Введите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword(this)">
   <div class="RememberPass">Запомнить пароль
     <img class="CheckCircle" src="{% static 'svg/check_circle.svg' %}" />
   </div>
-  <div class="Enter">Войти</div>
-  <div class="Help">Создать аккаунт</div>
-</div>
+  <button type="submit" class="Enter">Войти</button>
+  <a href="{% url 'register' %}" class="Help">Создать аккаунт</a>
+</form>
+
+
+
 <div class="Menu">
   <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
   <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>

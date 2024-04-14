@@ -10,21 +10,30 @@ import re
 
 # Create your views here.
 def index(request):
+
     if request.method == 'POST':
         search_query = request.POST.get('search_query', '')
         photos = Photo.objects.filter(description__icontains=search_query)
+    elif request.method == 'GET':  # Check for search query in GET as well
+        search_query = request.GET.get('query', '')  # Access query from redirect in search()
+        photos = Photo.objects.filter(description__icontains=search_query)
     else:
         photos = Photo.objects.all().order_by('-created_at')
-    return render(request, 'main.html', {'photos': photos})
+    return render(request, 'main.html', {'photos': photos, 'search_query': search_query})
+
 def upload(request):
     return render(request, 'upload.html', )
 def auth(request):
     return render(request, 'auth.html', )
 
 def search(request):
-    query = request.GET.get('query')
-    # Добавьте вашу логику поиска
-    redirect(reverse('index'))
+    if request.method == 'POST':
+        query = request.GET.get('query')
+        # Add your search logic here using the `query` variable
+        return redirect('index')  # Redirect to the search results page
+
+    # Handle potential errors gracefully, e.g., for invalid GET requests
+    return render(request, 'error.html', {'message': 'Invalid search request'})
 
 
 def upload_photo(request):

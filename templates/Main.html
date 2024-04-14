@@ -16,8 +16,8 @@
 </a>
     <form method="post" action="{% url 'search_photos' %}" class="SearchForm">
     {% csrf_token %}
-    <input class = "Search" name="search_query" placeholder="Поиск">
-    </form>
+    <input class="Search" name="search_query" placeholder="Поиск" value="{{ search_query }}">
+</form>
     <div class="Vector" id="menuButton">
       <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
     </div>  
@@ -29,9 +29,23 @@
     <a href="{% url 'upload' %}"><button name="Upload" class="MenuBtn">Загрузить</button></a>
     <button name="Support" class="MenuBtn" onclick="redirectToSupport()">Поддержка</button>
     <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
-    <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button></a>
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}"><button name="Logout" class="MenuBtn" >Выход</button></a>
+{% else %}
+    <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" >Вход</button></a>
+{% endif %}
 </div>
-<h1>Последние загруженные фотографии</h1>
+<h1>
+  {% if search_query %}
+    {% if photos %}
+      Найденные изображения
+    {% else %}
+      Изображений по данному запросу не найдено.
+    {% endif %}
+  {% else %}
+    Последние загруженные фотографии
+  {% endif %}
+</h1>
 <div class="Grid">
     {% for photo in photos %}
       <div class="Card">
