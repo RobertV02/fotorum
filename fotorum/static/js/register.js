@@ -26,8 +26,14 @@ function removePlaceholder(element) {
     element.removeAttribute('placeholder');
 }
 
-function restorePlaceholder(element) {
+function restoreLogin(element) {
     if (!element.value.trim()) {
-        element.setAttribute('placeholder', 'Введите название');
+        element.setAttribute('placeholder', 'Введите логин');
+    }
+}
+
+function restorePassword(element) {
+    if (!element.value.trim()) {
+        element.setAttribute('placeholder', 'Введите пароль');
     }
 }

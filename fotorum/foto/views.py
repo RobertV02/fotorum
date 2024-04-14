@@ -48,6 +48,11 @@ def logout_view(request):
     logout(request)
     return redirect('index')  # Перенаправляем на главную страницу после разлогинивания
 
+def auth(request):
+    return render(request, 'auth.html', )
+
+def register(request):
+    return render(request, 'register.html', )
 
 @login_required
 def upload_image(request):
