@@ -10,57 +10,33 @@
   <title>Fotorum</title>
 </head>
 <body>
-
-<div class="Main" style="width: 100%; height: 100%; padding-bottom: 340px; background: white; flex-direction: column; justify-content: flex-start; align-items: center; gap: 260px; display: inline-flex">
-  <div class="Navbar">
-    <img class="Logo" src="{% static 'svg/logo.png' %}" />
-    <div class="Vector" id="menuButton">
-      <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g id="Vector" filter="url(#filter0_d_21_214)">
-      <path d="M36 6L6 6.00006L36 6ZM36 21H6H36ZM36 36H6H36Z" fill="#D9D9D9"/>
-      <path d="M36 6L6 6.00006M36 21H6M36 36H6" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"/>
-      </g>
-      <defs>
-      <filter id="filter0_d_21_214" x="0" y="0" width="44" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feOffset dx="1" dy="1"/>
-      <feGaussianBlur stdDeviation="2"/>
-      <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_21_214"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_21_214" result="shape"/>
-      </filter>
-      </defs>
-      </svg>
-    </div>
-    <h1>Загрузка фотографии</h1>
+<div class="Navbar">
+  <img class="Logo" src="{% static 'svg/logo.png' %}" />
+  <h1>Загрузка фотографии</h1>
+  <div class="Vector" id="menuButton">
+    <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
-    <div class="Modal">
-        <div style="text-align: center; color: white; font-size: 18px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">Перетащите изображение в данное окно</div>
-        <div style="text-align: center; color: white; font-size: 18px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">или</div>
-        <div class="2" style="width: 230px; height: 0px; border: 1px #777777 solid"></div>
-        <div class="1" style="width: 230px; height: 0px; border: 1px #777777 solid"></div>
-        <div class="Name" style="padding-top: 4px; padding-left: 33px; padding-right: 34px; border-radius: 10px; overflow: hidden; border: 1px #AAAAAA solid; justify-content: center; align-items: center; display: inline-flex">
-            <div style="text-align: center; color: white; font-size: 18px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">Выберите изображение</div>
-        </div>
-        <div class="Submit" style="padding-top: 4px; padding-left: 18px; padding-right: 18px; border-radius: 10px; overflow: hidden; border: 2px rgba(255, 85, 0, 0.80) solid; justify-content: center; align-items: center; display: inline-flex">
-            <div style="text-align: center; color: white; font-size: 18px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">Загрузить</div>
-        </div>
-        <div class="Name" style="padding-top: 4px; padding-left: 54px; padding-right: 56px; border-radius: 10px; overflow: hidden; border: 1px #FF5500 solid; justify-content: center; align-items: center; display: inline-flex">
-            <div style="text-align: center; color: white; font-size: 18px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">Введите название</div>
-        </div>
-        <div style="text-align: center; color: rgba(255, 85, 0, 0.80); font-size: 14px; font-family: Zen Maru Gothic; font-weight: 400; line-height: 36px; word-wrap: break-word">Какие форматы поддерживаются?</div>
-    </div>
-    <div class="Menu">
-      <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
-      <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>
-      <button name="Upload" class="MenuBtn" onclick="redirectToUpload()">Загрузить</button>
-      <button name="Support" class="MenuBtn" onclick="redirectToSupport()">Поддержка</button>
-      <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
-      <button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button>
-    </div>
 </div>
+<div class="Modal">
+  <div class="DropArea">Перетащите изображение в данное окно</div>
+    <div class="DropBox"></div>
+  <div class="Or">или</div>
+  <div class="Line1"></div>
+  <div class="Line2"></div>
+  <div class="ChooseImg">Выберите изображение</div>
+  <div class="Submit">Загрузить</div>
+  <input class="NameBox" placeholder="Введите название"></input>
+  <div class="Formats">Какие форматы поддерживаются?</div>
+</div>
+<div class="Menu">
+  <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
+  <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>
+  <button name="Upload" class="MenuBtn" onclick="redirectToUpload()">Загрузить</button>
+  <button name="Support" class="MenuBtn" onclick="redirectToSupport()">Поддержка</button>
+  <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
+  <button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button>
+</div>
+<div class="Error"></div>
 </body>
 <script src="{% static 'js/Upload.js' %}"></script>
 </html>
