@@ -19,6 +19,7 @@
     <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
 </div>
+<<<<<<< HEAD
 <form method="post" enctype="multipart/form-data" action="{% url 'upload_photo' %}">
   {% csrf_token %}
   <div class="Modal">
@@ -39,6 +40,19 @@
 
 
 
+=======
+<div class="Modal">
+  <div class="DropArea">Перетащите изображение в данное окно</div>
+    <div class="DropBox"></div>
+  <div class="Or">или</div>
+  <div class="Line1"></div>
+  <div class="Line2"></div>
+  <div class="ChooseImg">Выберите изображение</div>
+  <div class="Submit">Загрузить</div>
+  <input class="NameBox" placeholder="Введите название"></input>
+  <div class="Formats">Какие форматы поддерживаются?</div>
+</div>
+>>>>>>> parent of ee39a65 (Add files via upload)
 <div class="Menu">
   <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
   <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>

@@ -61,6 +61,5 @@ function submitForm() {
   const descriptionInput = document.querySelector('.NameBox');
   const descriptionValue = descriptionInput.value.trim(); // Удаляем лишние пробелы в начале и конце
 
-
   document.querySelector('form').submit();
 }
