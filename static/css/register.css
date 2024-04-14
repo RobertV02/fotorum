@@ -1,3 +1,10 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #4a4a4a inset !important;
+}
+
 .Navbar
 {
   width: 100%;
@@ -136,7 +143,6 @@ h1
   align-items: center;
   display: inline-flex;
   text-align: center;
-  color: white;
   font-size: 18px;
   line-height: 34px;
   cursor: text;
@@ -150,9 +156,16 @@ h1
   border: 1px #FF5500 solid;
 }
 
+.CheckLogin
+{
+  position: absolute;
+  top: 118px;
+  right: 80px;
+}
+
 .ModalPassword
 {
-  top: 80%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 480px;
@@ -199,12 +212,26 @@ h1
 
 .Password1
 {
-  top: 30%;
+  top: 80px;
+}
+
+.CheckPassword1
+{
+  position: absolute;
+  top: 68px;
+  right: 80px;
 }
 
 .Password2
 {
-  top: 70%;
+  bottom: 50px;
+}
+
+.CheckPassword2
+{
+  position: absolute;
+  top: 155px;
+  right: 80px;
 }
 
 .Help
@@ -218,4 +245,21 @@ h1
   font-size: 14px;
   line-height: 36px;
   cursor: pointer;
+}
+
+.Error
+{
+  top: 20%;
+  transform: translate(-50%, -50%);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  width: 30%;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  color: #ff5500;
+  font-size: 26px;
+  font-family: "Zen Maru Gothic";
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: default;
 }

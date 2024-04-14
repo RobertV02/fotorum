@@ -1,3 +1,10 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px #4a4a4a inset !important;
+}
+
 .Navbar
 {
   width: 100%;
@@ -244,6 +251,7 @@ h1
 {
   transform: scale(1.05);
 }
+
 .Help
 {
   position: absolute;

@@ -19,11 +19,14 @@
 </div>
 <div class="ModalLogin">
   <input class="Login" placeholder="Придумайте логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
+    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckLogin">
   <div class="Help">Уже зарегистрированы?</div>
 </div>
 <div class="ModalPassword">
-  <input class="Password1" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
-  <input class="Password2" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
+  <input class="Password1" type="password" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
+    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword1">
+  <input class="Password2" type="password" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
+    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword2">
   <div class="Help">Уже зарегистрированы?</div>
 </div>
 <div class="Menu">
