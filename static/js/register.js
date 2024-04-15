@@ -32,6 +32,8 @@ function restorePassword2(element) {
     }
 }
 
+// Нажатие клавиши Enter для перехода к окну ввода паролей
+
 document.getElementById("login").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         var login = document.getElementById("login").value;
@@ -50,6 +52,8 @@ document.getElementById("login").addEventListener("keypress", function(event) {
     }
 });
 
+// Нажатие кнопки мыши для перехода к окну ввода паролей
+
 document.querySelectorAll(".CheckLogin").forEach(function(check) {
     check.addEventListener("click", function() {
         var login = document.getElementById("login").value;
@@ -65,6 +69,8 @@ document.querySelectorAll(".CheckLogin").forEach(function(check) {
     });
 });
 
+// Вывод галочек в окне ввода логина
+
 document.getElementById("login").addEventListener("input", function() {
     var login = document.getElementById("login").value;
     var checkLogin = document.querySelector(".CheckLogin");
@@ -76,13 +82,17 @@ document.getElementById("login").addEventListener("input", function() {
     }
 });
 
+// Вывод галочек в окне ввода паролей
 
 document.querySelectorAll(".ModalPassword input[type='password']").forEach(function(input) {
     input.addEventListener("input", function() {
         var password1 = document.querySelector(".Password1").value;
         var password2 = document.querySelector(".Password2").value;
 
-        if (password1 === password2 && password1.length >= 8 && password2.length >= 8) {
+        // Регулярное выражение для проверки пароля
+        var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (password1 === password2 && password1.length >= 8 && passwordPattern.test(password1)) {
             document.querySelector(".CheckPassword1").style.display = "inline-block";
             document.querySelector(".CheckPassword2").style.display = "inline-block";
         } else {
