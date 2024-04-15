@@ -89,6 +89,18 @@ def auth(request):
 def register(request):
     return render(request, 'register.html', )
 
+def post(request):
+    return render(request, 'post.html', )
+
+def profile(request):
+    return render(request, 'profile.html', )
+
+def support(request):
+    return render(request, 'support.html', )
+
+def params(request):
+    return render(request, 'settings.html', )
+
 @login_required
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
