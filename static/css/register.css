@@ -156,6 +156,12 @@ h1
   border: 1px #FF5500 solid;
 }
 
+.CheckLogin, .CheckPassword1, .CheckPassword2
+{
+  display: none;
+  cursor: pointer;
+}
+
 .CheckLogin
 {
   position: absolute;
@@ -179,6 +185,7 @@ h1
   font-family: Zen Maru Gothic;
   cursor: default;
   white-space: nowrap;
+  display: none;
 }
 
 .Password1, .Password2
