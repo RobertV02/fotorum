@@ -178,7 +178,6 @@ h1
   height: 260px;
   position: absolute;
   background: #4a4a4a;
-  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.25);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   border: 1px rgba(0, 0, 0, 0) solid;
@@ -219,26 +218,26 @@ h1
 
 .Password1
 {
-  top: 80px;
+  top: 60px;
 }
 
 .CheckPassword1
 {
   position: absolute;
-  top: 68px;
-  right: 80px;
+  top: 49px;
+  right: 50px;
 }
 
 .Password2
 {
-  bottom: 50px;
+  top: 140px;
 }
 
 .CheckPassword2
 {
   position: absolute;
-  top: 155px;
-  right: 80px;
+  top: 129px;
+  right: 50px;
 }
 
 .Help
@@ -270,4 +269,19 @@ h1
   font-weight: 400;
   letter-spacing: 1px;
   cursor: default;
+}
+
+.Description
+{
+  position: absolute;
+  width: 300px;
+  bottom: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  color: #aaaaaa;
+  font-size: 12px;
+  cursor: default;
+  text-decoration: none;
+  white-space: break-spaces;
 }
