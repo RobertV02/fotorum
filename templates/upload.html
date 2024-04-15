@@ -28,31 +28,30 @@
     <div class="Or">или</div>
     <div class="Line1"></div>
     <div class="Line2"></div>
-    <input type="file" id="fileInput" class="HiddenInput" name="image" onchange="handleFileSelect(event)" style="">
+    <input type="file" id="fileInput" class="HiddenInput" name="image" onchange="handleFileSelect(event)">
     <label for="fileInput" class="ChooseImg">Выберите изображение</label>
     <div class="Submit" onclick="submitForm()">Загрузить</div>
     <input class="NameBox" name="description" placeholder="Введите название" onfocus="removePlaceholder(this)" onblur="restorePlaceholder(this)">
     <div class="Formats">Какие форматы поддерживаются?</div>
   </div>
 </form>
-
-
-
-
 <div class="Menu">
-  <button name="Profile" class="MenuBtn" onclick="redirectToProfile()">Профиль</button>
-  <button name="Feed" class="MenuBtn" onclick="redirectToFeed()">Лента</button>
-  <button name="Upload" class="MenuBtn" onclick="redirectToUpload()">Загрузить</button>
-  <button name="Support" class="MenuBtn" onclick="redirectToSupport()">Поддержка</button>
-  <button name="Settings" class="MenuBtn" onclick="redirectToSettings()">Настройки</button>
-  <button name="Auth" class="MenuBtn" onclick="redirectToAuth()">Вход</button>
+  <a href="{% url 'profile' %}"><button name="Profile" class="MenuBtn">Профиль</button></a>
+  <a href="{% url 'index' %}"><button name="Feed" class="MenuBtn">Лента</button></a>
+  <a href="{% url 'upload' %}"><button name="Upload" class="MenuBtn">Загрузить</button></a>
+  <a href="{% url 'support' %}"><button name="Support" class="MenuBtn">Поддержка</button></a>
+  <a href="{% url 'settings' %}"><button name="Settings" class="MenuBtn">Настройки</button></a>
+{% if user.is_authenticated %}
+  <a href="{% url 'logout' %}"><button name="Logout" class="MenuBtn" >Выход</button></a>
+{% else %}
+  <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" >Вход</button></a>
+{% endif %}
 </div>
 <div class="Error">
   {% if error_message %}
     {{ error_message }}
   {% endif %}
 </div>
-
 </body>
 <script src="{% static 'js/Upload.js' %}"></script>
 </html>

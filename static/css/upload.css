@@ -229,6 +229,7 @@ h1
   line-height: 40px;
   letter-spacing: .5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .Or

@@ -1,20 +1,8 @@
-// Кнопки в меню и их переадресация
-function redirectToProfile() { window.location.href = "https://fotorum.ru/profile"; }
-function redirectToFeed() { window.location.href = "https://fotorum.ru/feed"; }
-function redirectToUpload() { window.location.href = "https://fotorum.ru/upload"; }
-function redirectToSupport() { window.location.href = "https://fotorum.ru/support"; }
-function redirectToSettings() { window.location.href = "https://fotorum.ru/settings"; }
-function redirectToAuth() { window.location.href = "https://fotorum.ru/auth"; }
-
-// Получаем ссылку на элемент "Vector" (иконку меню) и после ссылку на меню
 const menuButton = document.getElementById('menuButton');
 const menu = document.querySelector('.Menu');
 
-// Добавляем слушатель события на клик по иконке меню
 menuButton.addEventListener('click', function() {
-    // Проверяем, открыто ли уже меню
     const isOpen = menu.classList.contains('open');
-    // Если меню уже открыто, то закрываем его, иначе открываем
     if (isOpen) {
         menu.classList.remove('open');
     } else {
@@ -57,7 +45,7 @@ document.getElementById("login").addEventListener("keypress", function(event) {
             alert("Логин должен содержать как минимум 6 символов.");
         } else {
             event.preventDefault();
-            alert("Логин может содержать только буквы и цифры.");
+            alert("Логин может содержать только латинские буквы и цифры.");
         }
     }
 });
@@ -72,7 +60,7 @@ document.querySelectorAll(".CheckLogin").forEach(function(check) {
         } else if (login.length < 6) {
             alert("Логин должен содержать как минимум 6 символов.");
         } else {
-            alert("Логин может содержать только буквы и цифры.");
+            alert("Логин может содержать только латинские буквы и цифры.");
         }
     });
 });

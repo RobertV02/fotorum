@@ -3,7 +3,7 @@
 <head>
   {% load static %}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
   <link rel="icon" href="{% static 'svg/logo.png' %}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,22 +12,41 @@
 <body>
 <div class="Navbar">
   <img class="Logo" src="{% static 'svg/logo.png' %}" />
-  <h1>Регистрация</h1>
+  <h1>Пост пользователя</h1>
   <div class="Vector" id="menuButton">
     <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
 </div>
-<div class="ModalLogin">
-  <input class="Login" id ="login" value="" placeholder="Придумайте логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
-    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckLogin">
-    <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
+<div class="Post"></div>
+<div class="CommentBox">
+  <div class="DivideBar"></div>
+  <div class="ScrollBar"></div>
+  <input class="EnterComment" placeholder="Напишите ваш комментарий..."></input>
 </div>
-<div class="ModalPassword">
-  <input class="Password1" type="password" id="pass" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
-    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword1">
-  <input class="Password2" type="password" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
-    <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword2">
-    <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
+<div class="IconBox">
+  <div class="Views">
+    <img src="{% static 'svg/views.svg' %}" alt="Menu Icon">
+    <div class="ViewsCount">0</div>
+  </div>
+  <div class="Likes">
+    <img src="{% static 'svg/likes.svg' %}" alt="Menu Icon">
+    <div class="LikesCount">0</div>
+  </div>
+  <div class="Comments">
+    <img src="{% static 'svg/comments.svg' %}" alt="Menu Icon">
+    <div class="CommentsCount">0</div>
+  </div>
+  <div class="Share" id="share"><img src="{% static 'svg/share.svg' %}" alt="Menu Icon">
+    <div class="ShareMenu">
+      <div class="ContentCopy"><img src="{% static 'svg/content_copy.svg' %}" alt="Menu Icon"></div>
+      <div class="Download"><img src="{% static 'svg/download.svg' %}" alt="Menu Icon"></div>
+      </div>
+  </div>
+</div>
+<div class="PostText">
+  <div class="PostDate" id="Date">Дата поста</div>
+  <div class="PostName" id="Name">Название поста</div>
+  <div class="PostComments">Комментарии</div>
 </div>
 <div class="Menu">
   <a href="{% url 'profile' %}"><button name="Profile" class="MenuBtn">Профиль</button></a>
@@ -41,7 +60,6 @@
   <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" >Вход</button></a>
 {% endif %}
 </div>
-<div class="Error"></div>
 </body>
-<script src="{% static 'js/register.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
 </html>
