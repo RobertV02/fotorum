@@ -44,6 +44,24 @@ function restorePassword2(element) {
     }
 }
 
+document.getElementById("login").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        var login = document.getElementById("login").value;
+        
+        if (login.length >= 6 && /^[a-zA-Z0-9]+$/.test(login)) {
+            event.preventDefault();
+            document.getElementById("pass").focus();
+            document.querySelector(".ModalPassword").style.display = "block";
+        } else if (login.length < 6) {
+            event.preventDefault();
+            alert("Логин должен содержать как минимум 6 символов.");
+        } else {
+            event.preventDefault();
+            alert("Логин может содержать только буквы и цифры.");
+        }
+    }
+});
+
 document.querySelectorAll(".CheckLogin").forEach(function(check) {
     check.addEventListener("click", function() {
         var login = document.getElementById("login").value;
@@ -76,7 +94,7 @@ document.querySelectorAll(".ModalPassword input[type='password']").forEach(funct
         var password1 = document.querySelector(".Password1").value;
         var password2 = document.querySelector(".Password2").value;
 
-        if (password1 === password2 && password1 !== "" && password2 !== "") {
+        if (password1 === password2 && password1.length >= 8 && password2.length >= 8) {
             document.querySelector(".CheckPassword1").style.display = "inline-block";
             document.querySelector(".CheckPassword2").style.display = "inline-block";
         } else {
