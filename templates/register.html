@@ -18,16 +18,17 @@
   </div>
 </div>
 <div class="ModalLogin">
-  <input class="Login" id ="login" value="" placeholder="Придумайте логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
+  <input class="Login" id ="login" value="" autocomplete="off" placeholder="Придумайте логин" onfocus="removePlaceholder(this)" onblur="restoreLogin(this)">
     <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckLogin">
     <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
 </div>
 <div class="ModalPassword">
-  <input class="Password1" type="password" id="pass" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
+  <input class="Password1" type="password" autocomplete="new-password" id="pass" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
     <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword1">
-  <input class="Password2" type="password" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
+  <input class="Password2" type="password" autocomplete="new-password" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
     <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword2">
     <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
+    <div class="Description">Пароль должен содержать как минимум 8 символов, хотя бы одну цифру, заглавную букву, специальный символ и не должен совпадать с логином.</div>
 </div>
 <div class="Menu">
   <a href="{% url 'profile' %}"><button name="Profile" class="MenuBtn">Профиль</button></a>
