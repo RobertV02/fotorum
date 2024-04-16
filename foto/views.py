@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -41,6 +42,9 @@ def upload_photo(request):
     if request.method == 'POST':
         image = request.FILES.get('image')
         description = request.POST.get('description')
+        if isinstance(request.user, AnonymousUser):
+            error_message = 'Для загрузки изображения нужно авторизоваться. '
+            return render(request, 'upload.html', {'error_message': error_message})
         if not image:
             error_message = 'Выберите изображение.'
 
