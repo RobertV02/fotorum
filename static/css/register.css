@@ -230,13 +230,13 @@ h1
 
 .Password2
 {
-  top: 140px;
+  top: 120px;
 }
 
 .CheckPassword2
 {
   position: absolute;
-  top: 129px;
+  top: 109px;
   right: 50px;
 }
 
@@ -275,7 +275,7 @@ h1
 {
   position: absolute;
   width: 300px;
-  bottom: 40px;
+  bottom: 45px;
   left: 50%;
   transform: translate(-50%);
   text-align: center;
