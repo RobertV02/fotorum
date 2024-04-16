@@ -8,6 +8,21 @@ from django.http import HttpResponseBadRequest
 from foto.models import *
 from django.urls import reverse
 import re
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        fields = ("username", "password1", "password2")
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+
+            raise forms.ValidationError("Пароли не совпадают")
+        return password2
+
 
 # Create your views here.
 def index(request):
@@ -24,8 +39,6 @@ def index(request):
 
 def upload(request):
     return render(request, 'upload.html', )
-def auth(request):
-    return render(request, 'auth.html', )
 
 def search(request):
     if request.method == 'POST':
@@ -73,15 +86,25 @@ def login_view(request):
             return redirect('index')  # Перенаправляем на главную страницу после успешного входа
     return render(request, 'main.html')
 
-def register_view(request):
+def register(request):
+    error_message = None
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            # Получаем данные пользователя из формы
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password2')
+            # Аутентификация пользователя
+            user = authenticate(username=username, password=raw_password)
+            # Вход пользователя
+            login(request, user)
             return redirect('index')  # Перенаправляем на страницу входа после успешной регистрации
+        else:
+            error_message = 'Ошибка авторизации.'
     else:
-        form = UserCreationForm()
-    return render(request, 'main.html', {'form': form})
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form, 'error_message': error_message})
 
 def logout_view(request):
     logout(request)
@@ -89,9 +112,6 @@ def logout_view(request):
 
 def auth(request):
     return render(request, 'auth.html', )
-
-def register(request):
-    return render(request, 'register.html', )
 
 def post(request):
     return render(request, 'post.html', )
@@ -104,17 +124,3 @@ def support(request):
 
 def params(request):
     return render(request, 'settings.html', )
-
-@login_required
-def upload_image(request):
-    if request.method == 'POST' and request.FILES.get('image'):
-        image = request.FILES['image']
-        # Получаем текущего пользователя
-        user = request.user
-        # Создаем экземпляр модели Photo и заполняем его атрибуты
-        photo = Photo(image=image, user=user)
-        # Сохраняем объект в базе данных
-        photo.save()
-        return redirect('index')  # Перенаправляем на страницу ленты после загрузки
-    else:
-        return HttpResponseBadRequest('Invalid request method or no image provided')

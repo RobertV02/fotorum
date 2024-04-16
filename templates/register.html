@@ -17,6 +17,7 @@
     <img src="{% static 'svg/Vector.svg' %}" alt="Menu Icon">
   </div>
 </div>
+
 <form method="post" action="{% url 'register' %}" class="RegisterForm">
   {% csrf_token %}
   <div class="ModalLogin">
@@ -25,15 +26,14 @@
     <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
 </div>
 <div class="ModalPassword">
-  <input class="Password1" name="password" type="password" autocomplete="new-password" id="pass" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
+  <input class="Password1" name="password1" type="password" autocomplete="new-password" id="pass" placeholder="Придумайте пароль" onfocus="removePlaceholder(this)" onblur="restorePassword1(this)">
     <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword1">
   <input class="Password2" name="password2" type="password" autocomplete="new-password" placeholder="Повторите пароль" onfocus="removePlaceholder(this)" onblur="restorePassword2(this)">
     <img src="{% static 'svg/check.svg' %}" alt="check" class = "CheckPassword2">
     <a href="{% url 'auth' %}" class="Help">Уже зарегистрированы?</a>
     <div class="Description">Пароль должен содержать как минимум 8 символов, хотя бы одну цифру, заглавную букву, специальный символ и не должен совпадать с логином.</div>
-    <div class="Submit"></div>
+    <button type="submit" class="Submit" display: hidden></button>
 </div>
-
 </form>
 
 <div class="Menu">
@@ -48,7 +48,11 @@
   <a href="{% url 'auth' %}"><button name="Auth" class="MenuBtn" >Вход</button></a>
 {% endif %}
 </div>
-<div class="Error">{{ form.non_field_errors }}</div>
+<div class="Error">
+  {% if error_message %}
+    {{ error_message }}
+  {% endif %}
+</div>
 </body>
 <script src="{% static 'js/register.js' %}"></script>
 </html>
