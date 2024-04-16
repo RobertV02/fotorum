@@ -37,13 +37,20 @@ function handleFileSelect(event) {
 }
 
 function handleFiles(files) {
-  const dropText = document.querySelector('.DropText');
+  const nameBox = document.querySelector('.NameBox');
   if (files.length === 1 && files[0].type.includes('image')) {
-    dropText.textContent = files[0].name;
+    let fileName = files[0].name;
+    // Удаление расширения файла
+    const dotIndex = fileName.lastIndexOf('.');
+    if (dotIndex !== -1) {
+      fileName = fileName.substring(0, dotIndex);
+    }
+    nameBox.value = fileName;
   } else {
-    dropText.textContent = 'Перетащите изображение в данное окно';
+    nameBox.value = ''; // Очистить поле ввода, если файл не является изображением
   }
 }
+
 
 function submitForm() {
   const descriptionInput = document.querySelector('.NameBox');

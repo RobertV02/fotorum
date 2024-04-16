@@ -88,11 +88,15 @@ document.querySelectorAll(".ModalPassword input[type='password']").forEach(funct
     input.addEventListener("input", function() {
         var password1 = document.querySelector(".Password1").value;
         var password2 = document.querySelector(".Password2").value;
+        var login = document.getElementById("login").value;
 
         // Регулярное выражение для проверки пароля
         var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-        if (password1 === password2 && password1.length >= 8 && passwordPattern.test(password1)) {
+        // Проверка наличия логина в пароле
+        var containsLogin = password1.toLowerCase().includes(login.toLowerCase());
+
+        if (password1 === password2 && password1.length >= 8 && passwordPattern.test(password1) && !containsLogin) {
             document.querySelector(".CheckPassword1").style.display = "inline-block";
             document.querySelector(".CheckPassword2").style.display = "inline-block";
         } else {
